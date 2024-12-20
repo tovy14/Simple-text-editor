@@ -9,7 +9,7 @@ def read_file(filename):
     except OSError:
         print(f"{filename} could not be opened")
 
-def write_to_file(filename):
+def write_to_file(filename, mode):
     content = []
     while True:
         line = input("$: ")
@@ -17,7 +17,7 @@ def write_to_file(filename):
             break
         content.append(line)
     try:
-        with open(filename,"w") as file:
+        with open(filename, mode) as file:
             file.write('\n'.join(content))
             print(f"{filename} saved.")
     except OSError:
