@@ -1,12 +1,15 @@
 import os
-from pathlib import Path
-from file_io import create_file, write_to_file
+from file_io import read_file, write_to_file
 from user_input import user_input
 
 
-path = Path()
 
 def main():
-    write_to_file(user_input())
+    filename = user_input()
+    if os.path.exists(filename):
+        read_file(filename)
+        write_to_file(filename) 
+    else:
+        write_to_file(filename)
 
 main ()

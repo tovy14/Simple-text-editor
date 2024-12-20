@@ -1,17 +1,24 @@
-from user_input import user_input
+import os
 
+def read_file(filename):
+    try:
+        if os.path.exists(filename):
+            with open(filename, "r") as file:
+                content = file.read()
+                print(content)
+    except OSError:
+        print(f"{filename} could not be opened")
 
-
-def create_file():
-    pass
-
-def write_to_file(path):
-    while  input()!= "SAVE":
-        with open(path,"w+") as file:
-            file.write(input("$: "))
-
-
-
-
-
-write_to_file("./test.txt")
+def write_to_file(filename):
+    content = []
+    while True:
+        line = input("$: ")
+        if line =="SAVE":
+            break
+        content.append(line)
+    try:
+        with open(filename,"w") as file:
+            file.write('\n'.join(content))
+            print(f"{filename} saved.")
+    except OSError:
+        print(f"{filename} could not be saved")
